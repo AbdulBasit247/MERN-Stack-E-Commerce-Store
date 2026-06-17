@@ -2,6 +2,11 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
+import Verify from './pages/Verify'
+import VerifyEmail from './pages/VerifyEmail'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Profile from './pages/Profile'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -21,7 +26,15 @@ const router = createBrowserRouter([
   {
     path: '/verify',
     element: <Verify />
-  }
+  },
+  {
+    path: '/verify/:token',
+    element: <VerifyEmail />
+  },
+  {
+    path: '/profile/:userId',
+    element: <><Navbar /><Profile/></>
+  },
 ])
 
 

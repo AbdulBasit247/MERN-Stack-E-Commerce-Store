@@ -9,16 +9,19 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { setUser } from "@/redux/userSlice"
 import axios from "axios"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { toast } from "sonner"
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -44,6 +47,7 @@ const Login = () => {
             })
             if(res.data.success){
                navigate('/')
+               dispatch(setUser(res.data.user))
                localStorage.setItem("accessToken", res.data.accessToken)
                toast.success(res.data.message)
             }
