@@ -7,6 +7,7 @@ import VerifyEmail from './pages/VerifyEmail'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
+import Product from './pages/Product'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: '/profile/:userId',
     element: <><Navbar /><Profile/></>
+  },
+  {
+    path: '/products',
+    element: <><Navbar /><Product /><Footer/></>
   },
 ])
 
