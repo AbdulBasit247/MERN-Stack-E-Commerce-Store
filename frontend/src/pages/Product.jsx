@@ -10,12 +10,13 @@ import { useDispatch, useSelector } from 'react-redux';
 const Product = () => {
   const { products } = useSelector(store => store.product);
   const [allProducts, setAllProducts] = useState([]);
+  // const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [brand, setBrand] = useState("All");
   const [sortOrder, setSortOrder] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 999999]);
+  const [priceRange, setPriceRange] = useState([0, 500000]);
 
   const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ const Product = () => {
       const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/getallproducts`);
       if (res.data.success) {
         setAllProducts(res.data.products);
-        dispatch(setProducts(res.data.products));
+        // dispatch(setProducts(res.data.products));
       }
     } catch (error) {
       console.log(error);
@@ -63,6 +64,7 @@ const Product = () => {
     }
 
     dispatch(setProducts(filtered));
+    // setFilteredProducts(filtered);
 
   }, [search, category, brand, sortOrder, priceRange, allProducts, dispatch]);
 
